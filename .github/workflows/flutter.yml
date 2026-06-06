@@ -1,0 +1,57 @@
+name: Smetik Flutter Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Setup Java (required for Android)
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      # 3. Setup Flutter SDK
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.0'
+          channel: stable
+          cache: true
+
+      # 4. Verify Flutter
+      - name: Flutter Doctor
+        run: flutter doctor -v
+
+      # 5. Install dependencies
+      - name: Install dependencies
+        run: flutter pub get
+
+      # 6. Analyze (non-blocking so CI won't fail early)
+      - name: Analyze project
+        run: flutter analyze || true
+
+      # 7. Build APK
+      - name: Build APK (Release)
+        run: flutter build apk --release
+
+      # 8. Show output files
+      - name: List APK output
+        run: ls -R build/app/outputs/flutter-apk
+
+      # 9. Upload APK artifact
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: smetik-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
