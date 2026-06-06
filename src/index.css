@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playwrite+GB+J:ital,wght@0,100..400;1,100..400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Outfit', sans-serif;
+  --font-brand: 'Playwrite GB J', cursive;
+  
+  --color-primary: #845EC2;
+  --color-secondary: #8963C8;
+  --color-accent: #7C57BA;
+  --color-dark-accent: #613E9E;
+  --color-light-accent: #F3C5FF;
+  --color-secondary-surface: #FAF9FF;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #f8f8f8 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.shadow-soft {
+  box-shadow: 0 4px 20px rgba(132, 94, 194, 0.08);
+}
+
+/* Hide scrollbars for beautiful horizontal scroll */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Smetik",
+  "description": "Beauty & Personal Care Marketplace with WhatsApp ordering",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
